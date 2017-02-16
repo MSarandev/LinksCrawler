@@ -1,6 +1,6 @@
 import requests
 import time
-from urllib import urlretrieve
+import os
 from bs4 import BeautifulSoup
 
 print("YOU NEED BEAUTIFULSOUP TO RUN THIS")
@@ -11,6 +11,8 @@ print("")
 print("")
 
 def_web = raw_input("Enter URL: ")
+
+start_time = time.time()
 
 print("")
 print("Initialising")
@@ -48,7 +50,17 @@ for link in soup.find_all("a"):
     main_url_file.write(ext_1 + "\n")
 
     count += 1
-    print(">> MAIN PAGE CRAWL <> " + "COUNT: " + str(count) + " <> ARRAY: " + str(len(storage_init)))
+
+    os.system('cls')
+    print("~~LINKS CRAWL~~")
+    print("")
+    print("RUNNING")
+    print("")
+
+    print(">> MAIN PAGE CRAWL <> " + "COUNT: " + str(count) + "ARRAY: " + str(len(storage_init)))
+    print(">> URL : " + ext_1)
+    print(str((time.time() - start_time)/60) + " min.")
+    time.sleep(0.02)
 
 # Phase 2
 
@@ -88,7 +100,16 @@ if(len(storage_init) != 0):
                             storage_sub_links.append(ext_1)
                             sub_url_file.write(ext_1 + "\n")
 
+                            os.system('cls')
+                            print("~~LINKS CRAWL~~")
+                            print("")
+                            print("RUNNING")
+                            print("")
+
                             print(">> SUB CRAWL <> " + " <> INDEX: " + str(cur_ind) + " <> ARRAY: " + str(len(storage_sub_links)))
+                            print(">> URL : " + ext_1)
+                            print(str((time.time() - start_time) / 60) + " min.")
+                            time.sleep(0.02)
                     except KeyboardInterrupt:
                         break
             except:
@@ -133,8 +154,17 @@ if(len(storage_init) != 0):
                                     storage_sub_links.append(ext_1)
                                     sub_url_file.write(ext_1 + "\n")
 
+                                os.system('cls')
+                                print("~~LINKS CRAWL~~")
+                                print("")
+                                print("RUNNING")
+                                print("")
+
                                 print(
                                 ">> SUB CRAWL <> " + " <> INDEX: " + str(cur_ind) + " <> ARRAY: " + str(len(storage_sub_links)))
+                                print(">> URL : " + ext_1)
+                                print(str((time.time() - start_time) / 60) + " min.")
+                                time.sleep(0.02)
                         except KeyboardInterrupt:
                             break
                 except:
