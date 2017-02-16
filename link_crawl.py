@@ -18,9 +18,6 @@ print("")
 print("Initialising")
 print("")
 
-if("http" not in def_web):
-    def_web = "http://" + def_web
-
 count = 0
 
 res = requests.get(def_web)
@@ -35,15 +32,16 @@ sub_url_file = open("sub_urls.txt", "w")
 storage_init = []
 storage_sub_links = []
 
+os.system('cls')
+print("###############")
+print("~~LINKS CRAWL~~")
+print("###############")
+print("")
+print("RUNNING")
+print("")
+
 for link in soup.find_all("a"):
     ext_1 = str(link.get('href'))
-
-    if("http://" not in ext_1):
-        ext_1 = "http://" + ext_1
-    elif("http:/" not in ext_1):
-        ext_1 = "http:/" + ext_1
-    elif ("http:" not in ext_1):
-        ext_1 = "http:" + ext_1
 
     print(ext_1)
     storage_init.append(ext_1)
@@ -51,16 +49,9 @@ for link in soup.find_all("a"):
 
     count += 1
 
-    os.system('cls')
-    print("~~LINKS CRAWL~~")
-    print("")
-    print("RUNNING")
-    print("")
-
-    print(">> MAIN PAGE CRAWL <> " + "COUNT: " + str(count) + "ARRAY: " + str(len(storage_init)))
+    print(">> MAIN PAGE CRAWL <> " + "COUNT: " + str(count) + " <> ARRAY: " + str(len(storage_init)))
     print(">> URL : " + ext_1)
     print(str((time.time() - start_time)/60) + " min.")
-    time.sleep(0.02)
 
 # Phase 2
 
@@ -89,27 +80,14 @@ if(len(storage_init) != 0):
                         for link in soup.find_all("a"):
                             ext_1 = str(link.get('href'))
 
-                            if ("http://" not in ext_1):
-                                ext_1 = "http://" + ext_1
-                            elif ("http:/" not in ext_1):
-                                ext_1 = "http:/" + ext_1
-                            elif ("http:" not in ext_1):
-                                ext_1 = "http:" + ext_1
-
                             print(ext_1)
                             storage_sub_links.append(ext_1)
                             sub_url_file.write(ext_1 + "\n")
 
-                            os.system('cls')
-                            print("~~LINKS CRAWL~~")
                             print("")
-                            print("RUNNING")
-                            print("")
-
-                            print(">> SUB CRAWL <> " + " <> INDEX: " + str(cur_ind) + " <> ARRAY: " + str(len(storage_sub_links)))
+                            print(">> SUB CRAWL <> " + "INDEX: " + str(cur_ind) + " <> ARRAY: " + str(len(storage_sub_links)))
                             print(">> URL : " + ext_1)
                             print(str((time.time() - start_time) / 60) + " min.")
-                            time.sleep(0.02)
                     except KeyboardInterrupt:
                         break
             except:
@@ -142,29 +120,16 @@ if(len(storage_init) != 0):
                             for link in soup.find_all("a"):
                                 ext_1 = str(link.get('href'))
 
-                                if ("http://" not in ext_1):
-                                    ext_1 = "http://" + ext_1
-                                elif ("http:/" not in ext_1):
-                                    ext_1 = "http:/" + ext_1
-                                elif ("http:" not in ext_1):
-                                    ext_1 = "http:" + ext_1
-
                                 print(ext_1)
                                 if(ext_1 not in storage_sub_links):
                                     storage_sub_links.append(ext_1)
                                     sub_url_file.write(ext_1 + "\n")
 
-                                os.system('cls')
-                                print("~~LINKS CRAWL~~")
                                 print("")
-                                print("RUNNING")
-                                print("")
-
                                 print(
-                                ">> SUB CRAWL <> " + " <> INDEX: " + str(cur_ind) + " <> ARRAY: " + str(len(storage_sub_links)))
+                                ">> DEEP CRAWL <> " + "INDEX: " + str(cur_ind) + " <> ARRAY: " + str(len(storage_sub_links)))
                                 print(">> URL : " + ext_1)
                                 print(str((time.time() - start_time) / 60) + " min.")
-                                time.sleep(0.02)
                         except KeyboardInterrupt:
                             break
                 except:
